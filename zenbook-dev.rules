@@ -1,0 +1,13 @@
+# 这个文件需要链接或复制到`/etc/udev/rules.d/`文件夹下。
+# 这个文件作用主要用于检测键盘的状态。
+
+# /etc/udev/rules.d/zenbook-dev.rules
+
+#RUN+="/usr/bin/bash -c '/usr/bin/zenbook-duo.sh keyboard-add >> /tmp/zenbook.txt'"
+#RUN+="/usr/bin/bash -c '/usr/bin/zenbook-duo.sh keyboard-remove >> /tmp/zenbook.txt'"
+
+ACTION=="add", ATTRS{idVendor}=="0b05", ATTRS{idProduct}=="1bf2"\
+    RUN+="/bin/sh -c 'echo zenbook >> /var/tmp/zennbook_keyboard_attached'"
+
+ACTION=="remove", ATTRS{idVendor}=="0b05", ATTRS{idProduct}=="1bf2"\
+    RUN+="/bin/sh -c 'rm /var/tmp/zennbook_keyboard_attached'"

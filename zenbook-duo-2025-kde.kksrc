@@ -1,0 +1,6 @@
+[Custom Commands][net.local.toggle_screen2.sh.desktop]
+Exec=/home/jackal/Program/zenbook-duo-kwin-2025/toggle_screen2.sh
+Name=toggle_screen2
+
+[net.local.toggle_screen2.sh.desktop][Global Shortcuts]
+_launch=Ctrl+Alt+Shift+D

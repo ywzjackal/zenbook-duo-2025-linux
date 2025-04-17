@@ -39,17 +39,5 @@ systemctl enable keyd.service || {
     exit 1
 }
 
-# Setup KDE shortcut
-echo "Setting up KDE shortcut..."
-USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
-mkdir -p "$USER_HOME/.kde/share/config/" || {
-    echo "Failed to create KDE config directory"
-    exit 1
-}
-cp ./zenbook-duo-2025-kde.kksrc "$USER_HOME/.kde/share/config/kdesktopsrc" || {
-    echo "Failed to copy KDE shortcut configuration"
-    exit 1
-}
-
 echo "Installation completed successfully!"
 echo "Please configure the KDE shortcut manually in System Settings > Keyboard > Shortcuts if needed."

@@ -8,21 +8,21 @@ fi
 
 # Install required packages
 echo "Installing required packages..."
-pacman -S --needed --noconfirm keyd kscreen || {
+pacman -S --needed --noconfirm keyd kscreen usbutils || {
     echo "Failed to install required packages"
     exit 1
 }
 
 # Setup udev rules
-echo "Setting up udev rules..."
-cp ./zenbook-dev.rules /etc/udev/rules.d/ || {
-    echo "Failed to copy udev rules"
-    exit 1
-}
-udevadm control --reload-rules && udevadm trigger || {
-    echo "Failed to reload udev rules"
-    exit 1
-}
+#echo "Setting up udev rules..."
+#cp ./zenbook-dev.rules /etc/udev/rules.d/ || {
+#    echo "Failed to copy udev rules"
+#    exit 1
+#}
+#udevadm control --reload-rules && udevadm trigger || {
+#    echo "Failed to reload udev rules"
+#    exit 1
+#}
 
 # Configure keyd
 echo "Configuring keyd..."

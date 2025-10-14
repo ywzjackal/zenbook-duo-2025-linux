@@ -1,43 +1,21 @@
 #!/bin/bash
 
-# Check if running as root
-if [ "$(id -u)" -ne 0 ]; then
-    echo "Please run this script as root"
-    exit 1
-fi
+echo "Copy user systemd file to directory:~/.config/systemd/user/"
+mkdir -pv ~/.config/systemd/user/
+cp zenbook-screen.service ~/.config/systemd/user/
 
-# Install required packages
-echo "Installing required packages..."
-pacman -S --needed --noconfirm keyd kscreen usbutils || {
-    echo "Failed to install required packages"
-    exit 1
-}
+echo "Copy toggle_screen.sh and dev_trigger.sh to ~/.local/bin/"
+sudo cp toggle_screen.sh /usr/local/bin
+sudo cp dev_trigger.sh /usr/local/bin
 
-# Setup udev rules
-#echo "Setting up udev rules..."
-#cp ./zenbook-dev.rules /etc/udev/rules.d/ || {
-#    echo "Failed to copy udev rules"
-#    exit 1
-#}
-#udevadm control --reload-rules && udevadm trigger || {
-#    echo "Failed to reload udev rules"
-#    exit 1
-#}
+systemctl --user daemon-reload
+systemctl --user enable zenbook-screen.service
 
-# Configure keyd
-echo "Configuring keyd..."
-cp ./zenbook-keyd.conf /etc/keyd/ || {
-    echo "Failed to copy keyd configuration"
-    exit 1
-}
-systemctl restart keyd.service || {
-    echo "Failed to restart keyd service"
-    exit 1
-}
-systemctl enable keyd.service || {
-    echo "Failed to enable keyd service"
-    exit 1
-}
+echo "Copy device rules file to /etc/udev/rules.d/"
+sudo cp zenbook-dev.rules /etc/udev/rules.d/
 
-echo "Installation completed successfully!"
-echo "Please configure the KDE shortcut manually in System Settings > Keyboard > Shortcuts if needed."
+echo "Apply device rules"
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+
+echo "Finished."

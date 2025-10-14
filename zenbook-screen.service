@@ -1,0 +1,12 @@
+[Unit]
+Description=Toggle Screen2
+Wants=
+
+[Service]
+Type=oneshot
+ExecStart=toggle_screen.sh start
+ExecStop=toggle_screen.sh stop
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target

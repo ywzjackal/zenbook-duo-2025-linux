@@ -1,8 +1,8 @@
 #!/bin/bash
 
 echo "Remove zenbook-screen.serivce"
-systemctl --user disable zenbook-screen.service
-rm ~/.config/systemd/user/zenbook-screen.service
+systemctl --user disable zenbook-screen@.service
+rm ~/.config/systemd/user/zenbook-screen@.service
 systemctl --user daemon-reload
 
 echo "Remove zenbook-dev.rules"

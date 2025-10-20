@@ -4,8 +4,7 @@ Wants=
 
 [Service]
 Type=oneshot
-ExecStart=toggle_screen.sh start
-ExecStop=toggle_screen.sh stop
+ExecStart=toggle_screen.sh %i
 RemainAfterExit=yes
 
 [Install]

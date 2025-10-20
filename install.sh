@@ -2,14 +2,15 @@
 
 echo "Copy user systemd file to directory:~/.config/systemd/user/"
 mkdir -pv ~/.config/systemd/user/
-cp zenbook-screen.service ~/.config/systemd/user/
+cp zenbook-screen@.service ~/.config/systemd/user/
 
 echo "Copy toggle_screen.sh and dev_trigger.sh to ~/.local/bin/"
 sudo cp toggle_screen.sh /usr/local/bin
 sudo cp dev_trigger.sh /usr/local/bin
 
 systemctl --user daemon-reload
-systemctl --user enable zenbook-screen.service
+systemctl --user enable zenbook-screen@auto.service
+systemctl --user start zenbook-screen@auto.service
 
 echo "Copy device rules file to /etc/udev/rules.d/"
 sudo cp zenbook-dev.rules /etc/udev/rules.d/

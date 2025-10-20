@@ -4,7 +4,7 @@
 # /etc/udev/rules.d/zenbook-dev.rules
 
 ACTION=="add", ATTRS{idVendor}=="0b05", ATTRS{idProduct}=="1bf2"\
-    RUN+="/home/jackal/Program/zenbook-duo-2025-linux/dev_trigger.sh start"
+    RUN+="/home/jackal/Program/zenbook-duo-2025-linux/dev_trigger.sh off"
 
 ACTION=="remove", ATTRS{idVendor}=="0b05", ATTRS{idProduct}=="1bf2"\
-    RUN+="/home/jackal/Program/zenbook-duo-2025-linux/dev_trigger.sh stop'"
+    RUN+="/home/jackal/Program/zenbook-duo-2025-linux/dev_trigger.sh on'"
